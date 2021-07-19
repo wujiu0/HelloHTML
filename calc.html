@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人社保计算器</title>
+
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        function calc() {
+            var sal = parseInt(document.getElementById("salary").value);
+
+            var regExp = /^[0-9]{4,5}$/;
+            if (!regExp.test(sal)) {
+                document.getElementById("salary").value = "输入不合法,必须是4-5位数字"
+                document.getElementById("salary").style = "color:red";
+                return;
+            }
+            //计算
+
+            var gryl=sal*0.08;
+            var gsyl=sal*0.2;
+            document.getElementById("gryl").innerText=gryl;
+            document.getElementById("gsyl").innerText=gsyl;
+
+            var gryb=sal*0.02;
+            var gsyb=sal*0.06;
+            document.getElementById("gryb").innerText=gryb;
+            document.getElementById("gsyb").innerText=gsyb;
+
+            var grsy=sal*0.005;
+            var gssy=sal*0.015;
+            document.getElementById("grsy").innerText=grsy;
+            document.getElementById("gssy").innerText=gssy;
+
+            var gongshang=sal*0.005;
+            document.getElementById("gongshang").innerText=gongshang;
+
+            var shengyu=sal*0.008;
+            document.getElementById("shengyu").innerText=shengyu;
+ 
+            var grgjj=sal*0.12;
+            var gsgjj=sal*0.12;
+            document.getElementById("grgjj").innerText=grgjj;
+            document.getElementById("gsgjj").innerText=gsgjj;
+
+            var GRtotal=gryl+gryb+grsy+grgjj;
+            var GStotal=gsyl+gsyb+gssy+gongshang+shengyu+gsgjj;
+            document.getElementById("GRtotal").innerText=GRtotal;
+            document.getElementById("GStotal").innerText=GStotal;
+
+            var TOTAL=sal+GStotal;
+            document.getElementById("TOTAL").innerText=TOTAL;
+
+            //输出
+
+        }
+
+        function clearContent() {
+            document.getElementById("salary").value = "";
+            document.getElementById("salary").style = "color:black";
+        }
+    </script>
+
+
+
+
+</head>
+
+<body>
+    <div class="container text-center">
+        <img class="img-circle" src="imgs/nuclogored.jpg " width="100px" height="100px">
+
+        <table class="table table-bordered text-center table-striped">
+            <tr>
+                <td>工资</td>
+                <td colspan="3">
+                    <input onfocus="clearContent()" class="form-control" type="text" id="salary" placeholder="请输入工资">
+                </td>
+                <td>
+                    <button onclick="calc()" class="btn btn-danger btn-block ">计算</button>
+                </td>
+            </tr>
+            <tr class="bg-primary">
+                <td>险种</td>
+                <td>个人%</td>
+                <td>个人</td>
+                <td>公司%</td>
+                <td>公司</td>
+            </tr>
+            <tr>
+                <td>养老</td>
+                <td>8%</td>
+                <td id="gryl"></td>
+                <td>20%</td>
+                <td id="gsyl"></td>
+            </tr>
+            <tr>
+                <td>医疗</td>
+                <td>2%</td>
+                <td id="gryb"></td>
+                <td>6%</td>
+                <td id="gsyb"></td>
+            </tr>
+            <tr>
+                <td>失业</td>
+                <td>0.5%</td>
+                <td id="grsy"></td>
+                <td>1.5%</td>
+                <td id="gssy"></td>
+            </tr>
+            <tr>
+                <td>工伤</td>
+                <td></td>
+                <td></td>
+                <td>0.5%</td>
+                <td id="gongshang"></td>
+            </tr>
+            <tr>
+                <td>生育</td>
+                <td></td>
+                <td></td>
+                <td>0.8%</td>
+                <td id="shengyu"></td>
+            </tr>
+            <tr>
+                <td>公积金</td>
+                <td>12%</td>
+                <td id="grgjj"></td>
+                <td>12%</td>
+                <td id="gsgjj"></td>
+            </tr>
+            <tr>
+                <td>合计</td>
+                <td>个人合计</td>
+                <td id="GRtotal"></td>
+                <td>公司合计</td>
+                <td id="GStotal"></td>
+            </tr>
+            <tr>
+                <td>总额</td>
+                <td colspan="4" id="TOTAL"></td>
+            </tr>
+
+        </table>
+        开发者:隋定展 中北大学软件学院
+    </div>
+</body>
+
+</html>
